@@ -1,7 +1,7 @@
 
 
 
-export default function HandleBar({closeApp, moveWindow}: {closeApp: () => void, moveWindow: (moveX: number, moveY: number) => void}) {
+export default function HandleBar({closeApp, moveWindow, windowName}: {closeApp: () => void, moveWindow: (moveX: number, moveY: number) => void, windowName: string}) {
     
     let lastX = 0;
     let lastY = 0;
@@ -26,7 +26,16 @@ export default function HandleBar({closeApp, moveWindow}: {closeApp: () => void,
     }
     
     return (
-        <div className={"bg-off-black text-computer-primary border-b-2 border-computer-primary p-5 h-2.5 w-full flex-1 mr-6 text-lg cursor-move"} onMouseDown={dragWindow} onClick={closeApp}>
+        <div className={"bg-off-black text-computer-primary border-b-2 border-computer-primary h-10.5 w-full text-lg cursor-move flex justify-between"} onMouseDown={dragWindow}>
+            <div className="h-full aspect-square"> {/* temp styling to get text to center */}
+            
+            </div>
+            
+            <p className="mt-auto mb-auto">{windowName}</p>
+
+            <div className="flex flex-row-reverse">
+                <button className="h-full aspect-square border-l-2 border-computer-primary" onClick={closeApp}>X</button>
+            </div>
         </div>
     )
 }

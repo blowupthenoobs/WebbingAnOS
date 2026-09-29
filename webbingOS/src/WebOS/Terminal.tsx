@@ -7,6 +7,8 @@ export default function Terminal({closeApp}: {closeApp: () => void}) {
     const [xPosition, setXPos] = useState(window.innerWidth / 2);
     const [yPosition, setYPos] = useState(window.innerHeight / 2);
 
+    const terminalDefaultText = "root/ > "
+
     // console.log(window.innerHeight)
     
 
@@ -19,10 +21,15 @@ export default function Terminal({closeApp}: {closeApp: () => void}) {
 
 
     return (
-        <div className={"bg-off-black text-computer-primary border-2 border-computer-primary h-62.5 w-150 flex-1 mr-6 text-lg absolute translate-[-50%] "}
+        <div className={"bg-computer-light-black text-computer-primary border-2 border-computer-primary h-62.5 w-150 flex-1 mr-6 text-lg absolute translate-[-50%] "}
             style={{top: yPosition, left: xPosition}}>
-            <HandleBar closeApp={closeApp} moveWindow={moveWindow}/>
-            <p>Hello</p>
+            <HandleBar closeApp={closeApp} moveWindow={moveWindow} windowName="Terminal"/>
+            <div className="flex flex-col p-2">
+                <div className="flex">
+                    <p>{terminalDefaultText}</p>
+                    <input className="flex-1"/>
+                </div>
+            </div>
         </div>
     )
 }

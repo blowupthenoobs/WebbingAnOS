@@ -10,6 +10,7 @@ module.exports = {
       colors: {
         "computer-primary": "#24AEFF",
         "computer-black": "rgb(10, 10, 10)",
+        "computer-light-black": "rgb(20, 20, 20)",
 
         "lighter-black": "rgb(25, 25, 25)",
 
