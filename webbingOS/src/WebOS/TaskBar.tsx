@@ -26,7 +26,7 @@ export default function TaskBar() {
     return (
         <div className={" text-computer-primary border-2 border-computer-primary h-12 w-full flex align-middle "}>
             <div className="w-[50%] flex flex-row align-middle">
-                <p>Thing one</p>
+                {/* <p>Thing one</p> */}
             </div>
 
             <div className="w-[50%] h-full flex flex-row-reverse items-center">
@@ -37,7 +37,7 @@ export default function TaskBar() {
                     </div>
                 </div>
 
-                <p>hi</p>
+                {/* <p>hi</p> */}
             </div>
         </div>
     )
