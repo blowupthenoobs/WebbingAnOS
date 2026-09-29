@@ -6,7 +6,7 @@ export default function HandleBar({closeApp, moveWindow, windowName}: {closeApp:
     let lastX = 0;
     let lastY = 0;
 
-    const dragWindow = (event: MouseEvent) => { //tbh, I have no idea why the MouseEvent thing works as a param here
+    const dragWindow = (event: React.MouseEvent) => { //tbh, I have no idea why the MouseEvent thing works as a param here
         lastX = event.clientX;
         lastY = event.clientY;
 
