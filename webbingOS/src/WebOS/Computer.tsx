@@ -30,8 +30,8 @@ export default function Computer() {
             </div>
 
             <div className="flex-1 w-full flex flex-col p-3">
-                <AppIcon Image={""} openApp={openTerminal}/>
-                <AppIcon Image={""} openApp={openDiary}/>
+                <AppIcon Image={"1"} openApp={openTerminal}/>
+                <AppIcon Image={"2"} openApp={openDiary}/>
             </div>
 
             <TaskBar/>
