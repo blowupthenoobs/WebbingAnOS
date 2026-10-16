@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import TaskBar from "./TaskBar"
 import Terminal from "./Terminal"
 import AppIcon from "./AppIcon"
@@ -21,6 +21,22 @@ export default function Computer() {
         setDiaryOpen(true);
     }
 
+    const createStartingCookies = () => {
+        const check = localStorage.getItem("createdCookies");
+
+        if(check !== "true")
+        {
+            localStorage.setItem("createdCookies", "true")
+            localStorage.setItem("9/28/2026", "journal");
+            localStorage.setItem("2/18/2023", "journal");
+            localStorage.setItem("3/16/2022", "journal");
+        }
+    }
+
+    useEffect(() => {
+            createStartingCookies()
+    }, [])
+
     return (
         <div className="bg-computer-black h-screen w-full flex flex-col overflow-hidden">
             <div> {/* windows */}
@@ -30,8 +46,8 @@ export default function Computer() {
             </div>
 
             <div className="flex-1 w-full flex flex-col p-3">
-                <AppIcon Image={"1"} openApp={openTerminal}/>
-                <AppIcon Image={"2"} openApp={openDiary}/>
+                <AppIcon Image={""} openApp={openTerminal}/>
+                <AppIcon Image={""} openApp={openDiary}/>
             </div>
 
             <TaskBar/>

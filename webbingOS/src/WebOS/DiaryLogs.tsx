@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import HandleBar from "./HandleBar"
+import GlitchOverlay from "./GlitchOverlay";
 
 
 export default function DiaryLogs({closeApp}: {closeApp: () => void}) {
     
     const [xPosition, setXPos] = useState(window.innerWidth / 2);
     const [yPosition, setYPos] = useState(window.innerHeight / 2);
+    const [glitchTime, setGlitchTime] = useState(5);
+    const [diary, setDiaryEntries] = useState();
 
     // console.log(window.innerHeight)
     
@@ -17,15 +20,27 @@ export default function DiaryLogs({closeApp}: {closeApp: () => void}) {
         console.log(xPosition);
     }
 
+    const glitch = () => {
+        setGlitchTime(0);
+    }
+
+    
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setGlitchTime(prev => prev + 1)
+        }, 80)
+
+        return () => clearInterval(interval);
+    }, [])
 
     return (
         <div className={"bg-computer-light-black text-computer-primary border-2 border-computer-primary h-65 w-150 flex-1 mr-6 text-lg absolute translate-[-50%] "}
             style={{top: yPosition, left: xPosition}}>
             <HandleBar closeApp={closeApp} moveWindow={moveWindow} windowName="Logs"/>
-            <div className="flex flex-row w-full h-[calc(100%-40px)]">
+            <div className="flex flex-row w-full h-[calc(100%-40px)] overflow-hidden relative">
                 <div className="w-30 shrink-0 border-r-2 border-computer-primary flex flex-col">
                     <div className="w-full border-b h-10">
-                        <p className="mt-1 mb-auto ml-auto mr-auto border w-[90%] h-[80%] p-1 text-sm">Add Entry +</p>
+                        <p className="mt-1 mb-auto ml-auto mr-auto border w-[90%] h-[80%] p-1 text-sm cursor-pointer" onClick={glitch}>Add Entry +</p>
                     </div>
                     <div className="w-full border-b h-10 content-center text-center">
                         <p className="mt-auto mb-auto ml-auto mr-auto">9/28/2026</p>
@@ -43,6 +58,9 @@ export default function DiaryLogs({closeApp}: {closeApp: () => void}) {
                      aoidfjaoisjdf oija doifjaoijdfoiahsdf iaw fhbauejhfhuaye jhfgbnv manisdhfbuaksdfuh bam,xf jhbznvmnscvnao;dskufgba 
                      ah diufknj aiuefjhk naefhjbandiuf khansfeuihnm</p>
                 </div>
+                {glitchTime <= 2 &&
+                    <GlitchOverlay/>
+                }
             </div>
         </div>
     )
