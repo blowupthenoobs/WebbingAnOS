@@ -2,7 +2,7 @@ import { useState } from "react";
 import HandleBar from "./HandleBar"
 
 
-export default function Terminal({closeApp}: {closeApp: () => void}) {
+export default function Terminal({closeApp, zPos, setToTop}: {closeApp: () => void, zPos: number, setToTop: () => void}) {
     
     const [xPosition, setXPos] = useState(window.innerWidth / 2);
     const [yPosition, setYPos] = useState(window.innerHeight / 2);
@@ -21,8 +21,8 @@ export default function Terminal({closeApp}: {closeApp: () => void}) {
 
 
     return (
-        <div className={"bg-computer-light-black text-computer-primary border-2 border-computer-primary h-62.5 w-150 flex-1 mr-6 text-lg absolute translate-[-50%] "}
-            style={{top: yPosition, left: xPosition}}>
+        <div className={"bg-computer-light-black text-computer-primary border-2 border-computer-primary h-62.5 w-150 flex-1 mr-6 text-lg absolute translate-[-50%] z-1"}
+            style={{top: yPosition, left: xPosition, zIndex: zPos}} onMouseDown={setToTop}>
             <HandleBar closeApp={closeApp} moveWindow={moveWindow} windowName="Terminal"/>
             <div className="flex flex-col p-2">
                 <div className="flex">

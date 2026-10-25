@@ -8,6 +8,7 @@ import DiaryLogs from "./DiaryLogs"
 export default function Computer() {
     const [terminalOpen, setTerminalOpen] = useState<boolean>(true);
     const [diaryOpen, setDiaryOpen] = useState<boolean>(false);
+    const [zIndexes, setZIndexes] = useState<Array<number>>([12, 11]);
     const closeTerminal = () => {
         setTerminalOpen(false);
     }
@@ -19,6 +20,27 @@ export default function Computer() {
     }
     const openDiary = () => {
         setDiaryOpen(true);
+    }
+
+    const setWindowToTop = (windowIndex: number) => {
+        console.log("setting window index")
+        let indexes = [...zIndexes];
+        let addOneAfter = false;
+        for(let i = 0; i < indexes.length; i++) {
+            if(indexes[i] != 0)
+                indexes[i]--;
+            else
+                addOneAfter = true;
+        }
+        indexes[windowIndex] = 15;
+
+        if(addOneAfter) {
+            for(let i = 0; i < indexes.length; i++) {
+                indexes[i]++;
+            }
+        }
+
+        setZIndexes(indexes);
     }
 
     const createStartingCookies = () => {
@@ -38,10 +60,10 @@ export default function Computer() {
     }, [])
 
     return (
-        <div className="bg-computer-black h-screen w-full flex flex-col overflow-hidden">
+        <div className="bg-computer-black h-screen w-full flex flex-col overflow-hidden -z-100">
             <div> {/* windows */}
-                {terminalOpen && <Terminal closeApp={closeTerminal}/>}
-                {diaryOpen && <DiaryLogs closeApp={closeDiary}/>}
+                {terminalOpen && <Terminal closeApp={closeTerminal} zPos={zIndexes[0]} setToTop={() => setWindowToTop(0)}/>}
+                {diaryOpen && <DiaryLogs closeApp={closeDiary} zPos={zIndexes[1]} setToTop={() => setWindowToTop(1)}/>}
                 
             </div>
 
