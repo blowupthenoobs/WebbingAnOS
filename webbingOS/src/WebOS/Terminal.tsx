@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import HandleBar from "./HandleBar"
 
 
@@ -7,7 +7,9 @@ export default function Terminal({closeApp, zPos, setToTop}: {closeApp: () => vo
     const [xPosition, setXPos] = useState(window.innerWidth / 2);
     const [yPosition, setYPos] = useState(window.innerHeight / 2);
 
-    const terminalDefaultText = "root/ > "
+    const terminal = useRef<HTMLInputElement | null>(null);
+
+    const terminalDefaultText = "root/ >"
 
     // console.log(window.innerHeight)
     
@@ -19,15 +21,19 @@ export default function Terminal({closeApp, zPos, setToTop}: {closeApp: () => vo
         console.log(xPosition);
     }
 
+    const setFocus = () => {
+        terminal.current?.focus();
+    }
+
 
     return (
         <div className={"bg-computer-light-black text-computer-primary border-2 border-computer-primary h-62.5 w-150 flex-1 mr-6 text-lg absolute translate-[-50%] z-1"}
-            style={{top: yPosition, left: xPosition, zIndex: zPos}} onMouseDown={setToTop}>
+            style={{top: yPosition, left: xPosition, zIndex: zPos}} onMouseDown={setToTop} onClick={setFocus}>
             <HandleBar closeApp={closeApp} moveWindow={moveWindow} windowName="Terminal"/>
             <div className="flex flex-col p-2">
                 <div className="flex">
                     <p>{terminalDefaultText}</p>
-                    <input className="flex-1"/>
+                    <input className="ml-1 flex-1 focus:outline-0" ref={terminal}/>
                 </div>
             </div>
         </div>
