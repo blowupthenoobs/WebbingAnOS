@@ -22,7 +22,7 @@ export default function DiaryLogs({closeApp, zPos, setToTop}: {closeApp: () => v
         // console.log(changeX, " ", changeY)
         setXPos(prev => prev + changeX);
         setYPos(prev => prev + changeY);
-        console.log(xPosition);
+        // console.log(xPosition);
     }
 
     const glitch = () => {
@@ -87,8 +87,7 @@ export default function DiaryLogs({closeApp, zPos, setToTop}: {closeApp: () => v
                             <p className="mt-auto mb-auto ml-auto mr-auto pointer-events-none">{item}</p>
                         </div>
                         )
-                    })
-                    }
+                    })}
                     
                 </div>
                 <div className="p-1 flex-1">
