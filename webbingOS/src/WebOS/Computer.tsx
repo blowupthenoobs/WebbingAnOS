@@ -4,7 +4,7 @@ import Terminal from "./Terminal"
 import AppIcon from "./AppIcon"
 import DiaryLogs from "./DiaryLogs"
 
-import { BsTerminalFill } from "react-icons/bs"
+// import { BsTerminalFill } from "react-icons/bs"
 import { DiTerminalBadge } from "react-icons/di"
 import { PiNotebookThin } from "react-icons/pi"
 
