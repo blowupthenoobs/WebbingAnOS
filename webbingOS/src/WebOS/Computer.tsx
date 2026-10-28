@@ -4,6 +4,9 @@ import Terminal from "./Terminal"
 import AppIcon from "./AppIcon"
 import DiaryLogs from "./DiaryLogs"
 
+import { BsTerminalFill } from "react-icons/bs"
+import { DiTerminalBadge } from "react-icons/di"
+import { PiNotebookThin } from "react-icons/pi"
 
 export default function Computer() {
     const [terminalOpen, setTerminalOpen] = useState<boolean>(true);
@@ -68,8 +71,8 @@ export default function Computer() {
             </div>
 
             <div className="flex-1 w-full flex flex-col p-3">
-                <AppIcon Image={""} openApp={openTerminal}/>
-                <AppIcon Image={""} openApp={openDiary}/>
+                <AppIcon Icon={(<DiTerminalBadge className="w-[90%] h-[90%] align-middle ml-auto mr-auto mt-0.5 mb-auto"/>)} openApp={openTerminal}/>
+                <AppIcon Icon={<PiNotebookThin className="w-[90%] h-[90%] align-middle ml-auto mr-auto mt-0.5 mb-auto"/>} openApp={openDiary}/>
             </div>
 
             <TaskBar/>

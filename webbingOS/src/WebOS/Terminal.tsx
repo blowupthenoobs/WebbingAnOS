@@ -40,12 +40,16 @@ export default function Terminal({closeApp, zPos, setToTop}: {closeApp: () => vo
         let clearing = false;
         switch(baseCommand) {
             case "echo":
-                response = commandMessage;
+                response = commandMessage.substring(11);
                 break;
             case "clear":
                 clearing = true;
                 break;
             case "help":
+                response = "here is the list of commands you can use:";
+                extraMessages = ["help - shows this message",
+                                "echo (message) - repeats a message for you",
+                                "clear - removes all messages from the console"];
                 break;
             default:
                 break;
@@ -68,7 +72,7 @@ export default function Terminal({closeApp, zPos, setToTop}: {closeApp: () => vo
         <div className={"bg-computer-light-black text-computer-primary border-2 border-computer-primary h-62.5 w-150 flex-1 mr-6 text-lg absolute translate-[-50%] z-1"}
             style={{top: yPosition, left: xPosition, zIndex: zPos}} onMouseDown={setToTop} onClick={setFocus}>
             <HandleBar closeApp={closeApp} moveWindow={moveWindow} windowName="Terminal"/>
-            <div className="flex flex-col p-2">
+            <div className="flex flex-col p-2 scrollbar-thin overflow-y-scroll h-[calc(100%-40px)] pb-2">
                 {message.map((item) => {
                         return(
                             <div className="">
